@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>New Registration form</title>
+  
+  
+  
+      <link rel="stylesheet" href="css1/style.css">
+
+  
+</head>
+
+<body>
+  <div id="clouds">
+	<div class="cloud x1"></div>
+	<!-- Time for multiple clouds to dance around -->
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
+
+ <div class="container">
+
+
+      <div id="login">
+
+        <form onsubmit="return myFunction()"  action="#" method="post">
+
+          <fieldset class="clearfix">
+
+            <div>
+              <p><span class="fontawesome-user"></span><input style="background-color: white;" type="text" id="Firstname" placeholder="Firstname"></p>  
+              <div id="fname_error" class="val_error"></div>   
+            </div>
+
+            <div>
+              <p><span class="fontawesome-user"></span><input style="background-color: white;" type="text" id="Lastname" placeholder="LastName" ></p>
+              <div id="lname_error" class="val_error"></div> 
+            </div>
+
+            <div>
+            <p><span class="fontawesome-envelope"></span><input style="background-color: white;" type="text" id="Email" placeholder="Email" ></p>
+            <div id="email_error" class="val_error"></div>
+            </div>
+
+            <div>
+            <p><span class="fontawesome-book"></span><input style="background-color: white;" type="text" id="Phone" placeholder="Phone" ></p>
+            <div id="phone_error" class="val_error"></div>
+            </div>
+
+            <div>
+            <p><span class="fontawesome-lock"></span><input style="background-color: white;" type="password" id="Password" placeholder="Password"></p><!-- <use this tag for diffrent browser>onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required -->
+            <div id="pass_error" class="val_error"></div> 
+            </div>
+
+            <p><input type="submit" value="Sign Up"></p>
+
+          </fieldset>
+
+        </form>
+
+        <p>Registered member? <a href="Login.html" class="blue">Sign In</a><span class="fontawesome-arrow-right"></span></p>
+
+           <p style="font-size:large;"><a href="index.html" class="blue"><span>ShopArena</span></a></p>
+           <p><p>&copy; 2017 ShopArena. All Rights Reserved.<span>ShopArena</span><i class="fa fa-heart"></i> by <a href="index.html" target="_blank">ShopArena</a></p></p>
+      </div> <!-- End RegisTratioN -->
+
+    </div>
+    
+<div>
+</div>    
+
+
+
+
+
+
+
+
+<script>
+
+  // Variable decleration
+  var fname = document.getElementById('Firstname');
+  var lname = document.getElementById('Lastname');
+  var email = document.getElementById('Email');
+  var phone = document.getElementById('Phone');
+
+  // Erroe Vriable declaration
+  var fname_error = document.getElementById("fname_error");
+  var lname_error = document.getElementById("lname_error");
+  var email_error = document.getElementById("email_error");
+  var phone_error = document.getElementById("phone_error");
+
+  // SETTING ALL EVENT LISTENERS
+  fname.addEventListener("blur", fnameVerify, true);
+  lname.addEventListener("blur", lnameVerify, true);
+  email.addEventListener("blur", emailVerify, true);
+  phone.addEventListener("blur", phoneVerify, true);
+  
+  function myFunction() {
+
+    var letters = /^[A-Za-z]+$/;
+    var emailexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var numbers = /^[0-9]+$/;
+  
+    var flen = fname.value.length;
+    var llen = lname.value.length;
+    var plen = phone.value.length;
+
+    // VALIDATE FIRST NAME--------------------------------------------------
+    if(fname.value.match(letters)){     
+      
+      if (flen < 4 || flen > 20){
+        fname_error.textContent = "Length must be between 4 and 20";
+        fname.focus();
+        return false;
+      }
+      
+    }
+    else{
+      fname_error.textContent = "Name must contain letters only";
+      fname.focus();
+      return false;
+    } 
+
+
+    // VALIDATE LAST NAME----------------------------------------------------
+    if(lname.value.match(letters)){     
+      
+      if (llen >= 20 || llen < 4){
+
+        lname_error.textContent = "Length must be between 4 and 20";
+        lname.focus();
+        return false;
+      }
+    }
+    else{
+        lname_error.textContent = "Name must contain letters only";
+        lname.focus();
+        return false;
+    }    
+
+
+    // VALIDATE EMAIL----------------------------------------------------
+    if(email.value.match(emailexp)){    
+    }
+    else{
+        email_error.textContent = "Email is not correct";
+        email.focus();
+        return false;
+    }   
+
+
+    // VALIDATE PHONE--------------------------------------------------
+    if(phone.value.match(numbers)){         
+      if (plen!=10){
+        phone_error.textContent = "Phone Number is Incorrect.It must be exact 10 digit";
+        phone.focus();
+        return false;
+      }
+      
+    }
+    else{
+      phone_error.textContent = "Phone Number must contain numbers only";
+      phone.focus();
+      return false;
+    } 
+
+
+  }
+
+  // ADD EVENT LISTENERS
+  function fnameVerify(){
+    if (fname.value != "") {
+      fname_error.innerHTML = "";
+      fname.style.border = "1px solid #110E0F";
+      return true;
+    }
+  }
+
+  function lnameVerify(){
+    if (lname.value != "") {
+      lname_error.innerHTML = "";
+      lname.style.border = "1px solid #110E0F";
+      return true;
+    }
+  }
+
+  function emailVerify(){
+    if (email.value != "") {
+      email_error.innerHTML = "";
+      email.style.border = "1px solid #110E0F";
+      return true;
+    }
+  }
+
+  function phoneVerify(){
+    if (phone.value != "") {
+      phone_error.innerHTML = "";
+      phone.style.border = "1px solid #110E0F";
+      return true;
+    }
+  }
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
